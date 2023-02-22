@@ -15,6 +15,7 @@ class GameStatsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Game stats"
     }
     
     @IBAction func onOk() {

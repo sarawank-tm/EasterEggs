@@ -11,6 +11,7 @@ class FirstModalController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "First Modal"
         implementEasterEggFeature()
     }
 
