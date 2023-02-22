@@ -9,10 +9,21 @@ import UIKit
 
 class MainViewController: UIViewController {
 
+    fileprivate func addGameStatsButton() {
+        let barButton = UIBarButtonItem(title: "Stats", style: .plain, target: self, action: #selector(onGameStats))
+        navigationItem.rightBarButtonItem = barButton
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Main"
         implementEasterEggFeature()
+        addGameStatsButton()
+    }
+    
+    @objc func onGameStats() {
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "GameStats")
+        self.present(vc, animated: true)
     }
 }
 
@@ -44,22 +55,20 @@ extension GameableView where Self: UIViewController {
     private func addEasterEgg(_ egg: EasterEgg) {
         let easterEgg = UIImage(named: "easter_egg")
         let screenSize = UIScreen.main.bounds
+//        UIScreen.main.focusedView?.layoutGuides
         
         let y = CGFloat.random(in: 0..<(screenSize.height-100))
         let x = CGFloat.random(in: 0..<(screenSize.width-100))
         
         let action = UIAction(title: "", image: easterEgg, identifier: UIAction.Identifier(String(describing: egg.id)), discoverabilityTitle: nil, attributes: .hidden, state: .off) { action in
+            guard let senderButton = action.sender as? UIButton else {
+                return
+            }
             
             easterEggGameManager.eggTapped(egg)
-            if let eggView = self.view.viewWithTag(4551) {
-                eggView.removeFromSuperview()
-                
-                let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "GameStats")
-                self.present(vc, animated: true)
-            }
+            senderButton.removeFromSuperview()
         }
         let button = UIButton(frame: .init(x: x, y: y, width: 100, height: 133), primaryAction: action)
-        button.tag = 4551
         view.addSubview(button)
     }
 }

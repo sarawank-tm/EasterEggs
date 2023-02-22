@@ -38,7 +38,7 @@ class GameController: GameControllerType {
     }
 
     func initializeGame() -> Self {
-        // 1. Randomly select screens (randomize)
+        // 1. Randomly select screens (randomize) //Fetch
         let eligibleViews = persistentStore.selectedGameableViews()
         var eggs: [EasterEgg] = []
         
@@ -58,9 +58,6 @@ class GameController: GameControllerType {
 }
 
 protocol GameControllerType {
-//    func addAnEggIfEligible(toView: GameableView.Type)
-//    func isEligible(view: GameableView.Type) -> Bool
-//    func initializeGame()
     
     func retrieveEgg(for view: GameableView.Type) -> EasterEgg?
     func eggTapped(_ egg: EasterEgg)
