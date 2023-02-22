@@ -9,11 +9,10 @@ import UIKit
 
 class ThirdViewController: UIViewController {
 
-        override func viewDidLoad() {
-            super.viewDidLoad()
-            title = "Third"
-            implementEasterEggFeature()
-        }
-
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        title = "Third"
+        implementEasterEggFeature()
+    }
 }
 
