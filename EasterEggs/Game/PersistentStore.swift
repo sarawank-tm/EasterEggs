@@ -10,12 +10,12 @@ import Foundation
 
 class PersistentStore {
     var savedEggs = [EasterEgg]()
-    func selectedGameableViews() -> [GameableView.Type] {
+    func selectedGameableViews() -> [GameableViewId] {
         [
-            MainViewController.self,
-            SecondViewController.self,
-            FourthViewController.self,
-            FirstModalController.self
+            .mainView,
+            .secondView,
+            .fourthView,
+            .firstModal
         ]
     }
     
@@ -23,7 +23,7 @@ class PersistentStore {
        savedEggs = eggs
     }
     
-    func retrieveEgg(for id: GameableView.Type) -> EasterEgg? {
+    func retrieveEgg(for id: GameableViewId) -> EasterEgg? {
         return savedEggs.first { id == $0.id }
     }
     
